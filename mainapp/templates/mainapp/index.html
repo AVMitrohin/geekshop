@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/fonts/font-awesome/css/font-awesome.css">
-</head>
-<body>
-<ul class="menu">
-    <li><a href="/">домой</a></li>
-    <li><a href="/products/">продукты</a></li>
-    <li><a href="/contacts/">контакты</a></li>
-</ul>
-<h1>Главная</h1>
-</body>
-</html>
+{% extends 'mainapp/base.html' %}
+
+{% block title %}
+    Главная
+{% endblock %}
+{% block content %}
+<div class="content">
+<center><h2>Интернет-магазин детской одежды Travieso</h2>
+<p><big>Как и всем родителям, нам важно, чтобы наш ребёнок всегда выглядел стильно, опрятно и красиво. Именно поэтому мы решили сотрудничать со всемирно известным производителем детской одежды компанией Mayoral. Миллионы родителей во всём мире уже сделали свой выбор в пользу детской одежды бренда Mayoral.</big></p></center>
+</div>
+{% endblock %}

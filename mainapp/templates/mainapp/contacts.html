@@ -1,17 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Контакты</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/fonts/font-awesome/css/font-awesome.css">
-</head>
-<body>
-<ul class="menu">
-    <li><a href="/">домой</a></li>
-    <li><a href="/products/">продукты</a></li>
-    <li><a href="/contacts/">контакты</a></li>
-</ul>
-<h1>Контакты</h1>
+{% extends 'mainapp/base.html' %}
+
+{% block title %}
+    Контакты
+{% endblock %}
+{% block content %}
+    <body>
+    <h2>Напишите нам</h2>
+    <form class="form" action="">
+        <input type="text" placeholder="Ваше имя"><br />
+        <br />
+        <input type="email" class="Email" placeholder="mail@mail.ru"><br />
+        <br />
+        <input type="text" placeholder="Тема"><br />
+        <br />
+        <textarea name="" id=""></textarea><br />
+        <button type='submit'>Отправить</button>
+        <button type="reset">Удалить</button>
+    </form>
+    <h2>Наш адрес</h2>
+    Тел.: 8-495-363-0000<br />
+    Адрес магазина: г.Раменское, Северное шоссе, д.10<br />
+    Email: travieso@gmail.com<br />
+    <br />
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A7c46e84a7ba4cbb313968af66f048a42b2aabf83e29f19734224f6977fd8c0fd&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
 </body>
-</html>
+{% endblock %}

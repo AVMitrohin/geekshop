@@ -1,0 +1,173 @@
+body {
+    background-color: #f8f8f8;
+    font-family: serif;
+    border-top: 1px solid black;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    margin-right: 0;
+}
+
+.menu-link {
+    color: black;
+    font-family: serif, "Times Ner Roman", Verdana;
+    font-style: normal;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.header {
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid;
+}
+
+.menu-link-active {
+    background-color: chocolate;
+}
+
+.menu-main {
+    margin-top: 10px;
+}
+
+.logo {
+    margin-top: 10px;
+    margin-left: 30px;
+    border-radius: 50px;
+}
+.menu-link:hover {
+    color: darkorchid;
+}
+.product-description {
+    color: black;
+    font-size: 18px;
+    font-weight: 400;
+    background-color: #eaeaea;
+    margin-top: 0
+}
+.product-description-2 {
+    color: #707070;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 16px;
+}
+.product-description-detail {
+    color: 484343;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left
+}
+.char-list {
+    color: green;
+    font-size: 12px;
+    font-style: oblique;
+    font-variant: small-caps;
+    list-style-image: url(Img/marker.jpg);
+}
+placeholder {
+    background-color: aqua;
+}
+input[placeholder] {
+    height: 15px;
+    width: 250px;
+}
+input[type="text"],input[type="email"] {
+    color: black;
+    font-size: 14px;
+    font-family: serif;
+    font-weight: bold;
+    border-radius: 5px;
+}
+textarea {
+    height: 100px;
+    width: 300px;
+    border-radius: 5px;
+}
+.product-photo {
+    width: 10%;
+    outline: 1px solid green;
+    margin-right: 10px;
+    float: left;
+}
+
+.product-photo:hover {
+    outline: none;
+}
+
+.Email:focus {
+    color: brown;
+    background-color: bisque;
+}
+table {
+    border: 1px solid #000;
+    width: 200px;
+    height: 100px;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #000;
+}
+
+tr:first-child {
+    height: 40px;
+}
+
+.product-description-detail:first-letter {
+    color: blueviolet;
+    font: 20px fantasy;
+}
+
+.product-description-2:first-letter {
+    color: blueviolet;
+    font: 20px fantasy;
+}
+
+.mini-picture {
+    outline: 1px solid black;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.content {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.footer {
+    height: 50px;
+    background-color: gainsboro;
+    display: flex;
+    justify-content: flex-end;
+    clear: both;
+    border-top: 1px solid black;
+}
+
+.foot {
+    margin: 15px 15px;
+}
+
+.product {
+    overflow: hidden;
+}
+
+.Buy-button {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 30px;
+    margin-left: 80px
+}
+
+.catalog {
+    display: flex;
+    justify-content: space-around
+}
