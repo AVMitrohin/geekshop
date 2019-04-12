@@ -29,6 +29,7 @@ body {
 
 .menu-link-active {
     background-color: chocolate;
+    text-decoration: none;
 }
 
 .menu-main {
@@ -90,7 +91,7 @@ textarea {
     border-radius: 5px;
 }
 .product-photo {
-    width: 10%;
+    width: 20%;
     outline: 1px solid green;
     margin-right: 10px;
     float: left;
@@ -169,5 +170,5 @@ tr:first-child {
 
 .catalog {
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
 }

@@ -1,12 +1,20 @@
-<ul class="menu-links">
-    {% for link in menu_links %}
-        <li>
-            <a href="{% url link.href %}"
-               class="{% if request.resolver_match.url_name == link.href %}
-                        active
-                      {% endif %}">
-                {{ link.name }}
-            </a>
-        </li>
-    {% endfor %}
+<ul class="menu-main">
+  <li>
+    <a style="text-decoration: none" href="{% url 'products:category' 0 %}"
+       class="{% if request.resolver_match.kwargs.pk == '0' %}
+                menu-link-active
+              {% endif %}">
+      Все
+    </a>
+  </li>
+  {% for link in links_menu %}
+    <li>
+      <a style="text-decoration: none" href="{% url 'products:category' link.pk %}"
+         class="{% if request.resolver_match.kwargs.pk|add:'0' == link.pk %}
+                  menu-link-active
+                {% endif %}">
+        {{ link.name }}
+      </a>
+    </li>
+  {% endfor %}
 </ul>

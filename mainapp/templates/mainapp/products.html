@@ -3,11 +3,13 @@
 {% block title %}
     Продукты
 {% endblock %}
+
 {% block content %}
     <h1>Продукты</h1>
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }} ({{ product.category }})</li>
-        {% endfor %}
-    </ul>
+    {% for product in same_products %}
+        <div>{{ product.name }} ({{ product.category.name }})</div>
+        {% if product.image %}
+            <img src={{ product.image.url }} />
+        {% endif %}
+    {% endfor %}
 {% endblock %}
