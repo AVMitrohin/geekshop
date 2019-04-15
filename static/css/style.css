@@ -165,7 +165,8 @@ tr:first-child {
     width: 200px;
     height: 30px;
     margin-bottom: 30px;
-    margin-left: 80px
+    background-color: cornflowerblue;
+    text-decoration: none;
 }
 
 .catalog {

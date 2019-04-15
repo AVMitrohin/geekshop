@@ -10,7 +10,7 @@
             <div>{{ user.username|title }}</div>
             <a href="{% url 'auth:logout' %}">Выход</a>
         {% else %}
-            <a href="{% url 'auth:login' %}">Войти</a> или <a href="{% url 'auth:re' %}">зарегистрироваться</a>
+            <a href="{% url 'auth:login' %}">Войти</a> или <a href="{% url 'auth:register' %}">зарегистрироваться</a>
         {% endif %}
         </div>
     </div>
