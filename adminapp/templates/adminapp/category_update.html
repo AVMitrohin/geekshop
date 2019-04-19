@@ -1,0 +1,23 @@
+{% extends 'authapp/base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if action_type == 'delete' %}
+            <input class="form-control" type="submit" value="удалить">
+            {% else %}
+            <input class="form-control" type="submit" value="сохранить">
+        {% endif %}
+    </form>
+    <button class="btn btn-round form-control last">
+        <a href="{% url 'admin_custom:categories' %}">
+            к списку категорий
+        </a>
+    </button>
+{% endblock %}

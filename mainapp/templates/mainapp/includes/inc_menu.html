@@ -14,6 +14,9 @@
             <li><a class="menu-link {% if request.resolver_match.view_name == 'contacts' %}
                         menu-link-active
                       {% endif %}" href="{% url 'contacts' %}">Контакты</a></li>
+            <li>{% if request.user.is_superuser %}
+                <a class="menu-link" href="{% url 'admin_custom:categories' %}">Админка</a>
+                {% endif %}</li>
             <li><a class="menu-link" href="{% url 'basket:view' %}">Корзина</a></li>
             {% if basket %}
                 {{ basket.0.total_cost|floatformat:0 }} руб
