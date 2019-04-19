@@ -3,9 +3,24 @@
 {% block title %}
     Главная
 {% endblock %}
+{% block menu %}
+    {% include 'mainapp/includes/inc_menu.html' %}
+    <div class="container">
+        {% if user.is_authenticated %}
+            <div>{{ user.username|title }}</div>
+            <a href="{% url 'auth:logout' %}">Выход</a>
+        {% else %}
+            <a href="{% url 'auth:login' %}">Войти</a> или <a href="{% url 'auth:register' %}">зарегистрироваться</a>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
 {% block content %}
-<div class="content">
-<center><h2>Интернет-магазин детской одежды Travieso</h2>
-<p><big>Как и всем родителям, нам важно, чтобы наш ребёнок всегда выглядел стильно, опрятно и красиво. Именно поэтому мы решили сотрудничать со всемирно известным производителем детской одежды компанией Mayoral. Миллионы родителей во всём мире уже сделали свой выбор в пользу детской одежды бренда Mayoral.</big></p></center>
-</div>
+    <div class="content">
+        <center><h2>Интернет-магазин детской одежды Travieso</h2>
+            <p><big>Как и всем родителям, нам важно, чтобы наш ребёнок всегда выглядел стильно, опрятно и красиво.
+                Именно поэтому мы решили сотрудничать со всемирно известным производителем детской одежды компанией
+                Mayoral. Миллионы родителей во всём мире уже сделали свой выбор в пользу детской одежды бренда
+                Mayoral.</big></p></center>
+    </div>
 {% endblock %}

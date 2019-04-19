@@ -4,5 +4,26 @@
 	"name": "Свитер",
 	"price": 1000,
 	"quantity": 5
+	},
+
+    {
+	"category": "Для мальчиков",
+	"name": "Костюм-тройка",
+	"price": 1900,
+	"quantity": 10
+	},
+
+    {
+	"category": "Для девочек",
+	"name": "Платье",
+	"price": 1400,
+	"quantity": 15
+	},
+
+    {
+	"category": "Для девочек",
+	"name": "Кофта",
+	"price": 1700,
+	"quantity": 15
 	}
 ]
