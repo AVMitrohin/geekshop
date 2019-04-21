@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import HttpResponseRedirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
@@ -8,8 +9,13 @@ from django.utils.decorators import method_decorator
 from authapp.models import ShopUser
 
 
-@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
-class ProductCategoryListView(ListView):
+class IsSuperUserView(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+# @method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
+class ProductCategoryListView(IsSuperUserView, ListView):
     model = ProductCategory
     template_name = 'adminapp/categories.html'
 
@@ -19,7 +25,7 @@ class ProductCategoryListView(ListView):
         return context
 
 
-class ProductCategoryCreateView(CreateView):
+class ProductCategoryCreateView(IsSuperUserView, CreateView):
     model = ProductCategory
     template_name = 'adminapp/category_update.html'
     fields = '__all__'
@@ -31,7 +37,7 @@ class ProductCategoryCreateView(CreateView):
         return context
 
 
-class ProductCategoryUpdateView(UpdateView):
+class ProductCategoryUpdateView(IsSuperUserView, UpdateView):
     model = ProductCategory
     template_name = 'adminapp/category_update.html'
     fields = '__all__'
@@ -43,7 +49,7 @@ class ProductCategoryUpdateView(UpdateView):
         return context
 
 
-class ProductCategoryDeleteView(DeleteView):
+class ProductCategoryDeleteView(IsSuperUserView, DeleteView):
     model = ProductCategory
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('admin_custom:categories')
@@ -55,8 +61,7 @@ class ProductCategoryDeleteView(DeleteView):
         return context
 
 
-@method_decorator(user_passes_test(lambda u: u.is_superuser), name='dispatch')
-class UserListView(ListView):
+class UserListView(IsSuperUserView, ListView):
     model = ShopUser
     template_name = 'adminapp/users.html'
 
@@ -66,7 +71,7 @@ class UserListView(ListView):
         return context
 
 
-class UsersCreateView(CreateView):
+class UsersCreateView(IsSuperUserView, CreateView):
     model = ShopUser
     template_name = 'adminapp/user_update.html'
     fields = '__all__'
@@ -78,7 +83,7 @@ class UsersCreateView(CreateView):
         return context
 
 
-class UsersUpdateView(UpdateView):
+class UsersUpdateView(IsSuperUserView, UpdateView):
     model = ShopUser
     template_name = 'adminapp/user_update.html'
     fields = '__all__'
@@ -90,7 +95,7 @@ class UsersUpdateView(UpdateView):
         return context
 
 
-class UsersDeleteView(DeleteView):
+class UsersDeleteView(IsSuperUserView, DeleteView):
     model = ShopUser
     template_name = 'adminapp/user_update.html'
     success_url = reverse_lazy('admin_custom:users')
@@ -100,4 +105,10 @@ class UsersDeleteView(DeleteView):
         context['title'] = 'Удаление пользователя'
         # context['action_type'] = 'delete'
         return context
+
+    def delete(self, request, *args, **kwargs):
+        user = get_object_or_404(ShopUser, pk=kwargs['pk'])
+        user.is_active = False
+        user.save()
+        return HttpResponseRedirect(self.success_url)
 
