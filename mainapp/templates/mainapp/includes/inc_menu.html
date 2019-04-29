@@ -1,19 +1,32 @@
 {% load staticfiles %}
+{% load custom_tags %}
 <div class="header">
-<div class="logo">
+    <div class="logo">
 
-</div>
-<div class="menu-main">
-<ul class="menu">
-    <li><a class="menu-link {% if request.resolver_match.view_name == 'index' %}
+    </div>
+    <div class="menu-main">
+        <ul class="menu">
+            <li><a class="menu-link {% if request.resolver_match.view_name == 'index' %}
                         menu-link-active
                       {% endif %}" href="{% url 'index' %}">Главная</a></li>
-    <li><a class="menu-link {% if request.resolver_match.view_name == 'products:index' %}
+            <li><a class="menu-link {% if request.resolver_match.view_name == 'products:index' %}
                         menu-link-active
                       {% endif %}" href="{% url 'products:index' %}">Продукты</a></li>
-    <li><a class="menu-link {% if request.resolver_match.view_name == 'contacts' %}
+            <li><a class="menu-link {% if request.resolver_match.view_name == 'contacts' %}
                         menu-link-active
                       {% endif %}" href="{% url 'contacts' %}">Контакты</a></li>
-</ul>
-</div>
+            <li>{% if request.user.is_superuser %}
+                <a class="menu-link" href="{% url 'admin_custom:categories' %}">Админка</a>
+            {% endif %}</li>
+            <li><a class="menu-link" href="{% url 'basket:view' %}">Корзина</a></li>
+            <span>
+                    {{ request.user|basket_total_cost }}
+                </span>
+            {#            {% if basket %}#}
+            {#                {{ basket.0.total_cost|floatformat:0 }} руб#}
+            {#                ({{ basket.0.total_quantity }} шт)#}
+            {#            {% endif %}#}
+        </ul>
+    </div>
+
 </div>

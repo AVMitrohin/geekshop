@@ -3,11 +3,33 @@
 {% block title %}
     Продукты
 {% endblock %}
+
 {% block content %}
     <h1>Продукты</h1>
-    <ul>
-        {% for product in products %}
-            <li>{{ product.name }} ({{ product.category }})</li>
-        {% endfor %}
-    </ul>
+    <div class="details-products">
+        <div class="links clearfix">
+            {% include 'mainapp/includes/inc_categories_menu.html' %}
+        </div>
+        <div class="catalog">
+            <div class="block">
+                <img src="/media/{{ hot_product.image }}" class="product-photo" alt="product">
+                <h5 class="card-title">{{ hot_product.name }}</h5>
+                <p class="card-text">{{ hot_product.short_desc }}</p>
+                <a href="{% url 'products:product' hot_product.pk %}" class="Buy-button">Заказать</a>
+                <br><br>
+                <div style="color: red">ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</div>
+            </div>
+
+            {% for product in same_products %}
+                <div class="block">
+                    <img src="/media/{{ product.image }}" class="product-photo" alt="product">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.short_desc }}</p>
+                        <a href="{% url 'products:product' product.pk %}" class="Buy-button">Заказать</a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+    </div>
 {% endblock %}
