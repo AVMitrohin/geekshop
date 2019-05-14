@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="catalog">
     {% for item in basket_items %}
         <div class="block">
@@ -9,7 +11,8 @@
             <input type="number" name="{{ item.pk }}"
                    min="0"
                    value="{{ item.quantity }}">
-            <span class="product_cost">{{ item.cost }}&nbspруб</span>
+            <br>
+            <span class="product_cost">{{ item.product_cost }}&nbspруб</span>
             <button class="btn btn-round">
                 <a href="{% url 'basket:remove' item.pk %}" class="">
                     удалить

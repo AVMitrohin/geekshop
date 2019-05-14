@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IHBvaQ==?=
+From: django@geekshop.local
+To: 123@localhost.ru
+Date: Wed, 01 May 2019 15:59:56 -0000
+Message-ID: <155672639621.13816.1577244711857938699@AndreyM>
+
+Для подтверждения учетной записи poi на портале http://localhost:8000 перейдите по ссылке: http://localhost:8000/auth/verify/123@localhost.ru/c2ba28cedb63671aa1229c241eb7f52c3790847c/
+-------------------------------------------------------------------------------

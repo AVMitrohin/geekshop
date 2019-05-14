@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IGdnZw==?=
+From: django@geekshop.local
+To: 444@localhost.ru
+Date: Thu, 02 May 2019 17:50:36 -0000
+Message-ID: <155681943655.17932.1422762200806239984@AndreyM>
+
+Для подтверждения учетной записи ggg на портале http://localhost:8000 перейдите по ссылке: http://localhost:8000/auth/verify/444@localhost.ru/0fe458fd597b67ed76ae449ec64b48d596d24b1d/
+-------------------------------------------------------------------------------

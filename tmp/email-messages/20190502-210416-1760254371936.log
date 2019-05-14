@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IHJycg==?=
+From: django@geekshop.local
+To: 99@localhost.ru
+Date: Thu, 02 May 2019 18:04:16 -0000
+Message-ID: <155682025609.3980.11827727697317500642@AndreyM>
+
+Для подтверждения учетной записи rrr на портале http://localhost:8000 перейдите по ссылке: http://localhost:8000/auth/verify/99@localhost.ru/c106608b26dc1699a722663028053502cf86f201/
+-------------------------------------------------------------------------------

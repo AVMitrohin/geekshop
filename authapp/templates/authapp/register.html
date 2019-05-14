@@ -6,7 +6,9 @@
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ profile_form.as_p }}
         <br>
         <input class="form-control" type="submit" value="зарегистрироваться">
+        <a href="{% url 'index' %}"class="form-control" type="submit">На главную</a>
     </form>
 {% endblock %}

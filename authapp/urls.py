@@ -7,5 +7,7 @@ urlpatterns = [
     url(r'^login/', authapp.login, name='login'),
     url(r'^logout/', authapp.logout, name='logout'),
     url(r'^register/', authapp.register, name='register'),
-    url(r'^edit/', authapp.edit, name='edit')
+    url(r'^edit/', authapp.edit, name='edit'),
+    url(r'^verify/(?P<email>.+)/(?P<activation_key>\w+)/$', authapp.verify, name='verify'),
+    url(r'^email_verification/', authapp.email_verification, name='email_verification'),
 ]

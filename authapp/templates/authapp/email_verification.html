@@ -1,0 +1,11 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if user %}
+        <h3>Check your email to complete verification</h3>
+        {% else %}
+        <h3>Verification is failed</h3>
+    {% endif %}
+    <a class="button" href="{% url 'index' %}">На главную </a>
+{% endblock %}

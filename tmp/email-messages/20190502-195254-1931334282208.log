@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IHp6eg==?=
+From: django@geekshop.local
+To: 123@localhost.ru
+Date: Thu, 02 May 2019 16:52:54 -0000
+Message-ID: <155681597499.6728.4631864118377051350@AndreyM>
+
+Для подтверждения учетной записи zzz на портале http://localhost:8000 перейдите по ссылке: http://localhost:8000/auth/verify/123@localhost.ru/cea9dd4ad3ca099b7092c7fbc4ddcc364ed5eb11/
+-------------------------------------------------------------------------------

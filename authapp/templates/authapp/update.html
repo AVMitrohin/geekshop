@@ -1,0 +1,18 @@
+{% extends 'authapp/base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <div class="photo"><img src="{% if user_profile.photo %} {{ user_profile.photo }}
+                            {% else %} /media/{{ user.avatar|default:'users_avatars/default.jpg' }}
+        {% endif %}"alt="Profile photo">
+    </div>
+    <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ profile_form.as_p }}
+        <br>
+        <input class="form-control" type="submit" value="сохранить">
+        <a href="{% url 'index' %}" class="form-control" type="submit">На главную</a>
+    </form>
+{% endblock %}

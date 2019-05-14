@@ -34,7 +34,10 @@ urlpatterns = [
     url(r'^basket/', include('basketapp.urls', namespace='basket')),
     url(r'^admin_custom/', include('adminapp.urls', namespace='admin_custom')),
     url(r'^__debug__/', include(debug_toolbar.urls)),
-    url('^social/', include('social_django.urls', namespace='social')),
+    # url(r'^auth/verify/', include('social_django.urls', namespace='social')),
+    # url(r'', include('social_django.urls', namespace='social')),
+    url(r'^auth/verify/', include('social_django.urls', namespace='social')),
+    url(r'^orders/', include('ordersapp.urls', namespace='orders')),
 ]
 
 if settings.DEBUG:

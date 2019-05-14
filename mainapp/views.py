@@ -18,7 +18,6 @@ def main(request):
 
 def products(request, pk=None):
     links_menu = ProductCategory.objects.all()
-    # basket = request.user.basket.all() if request.user.is_authenticated else []
 
     if pk:
         if pk == '0':
@@ -32,7 +31,6 @@ def products(request, pk=None):
             'products': product_list,
             'links_menu': links_menu,
             'category': category,
-            # 'basket': basket,
         }
         return render(request, 'mainapp/products_list.html', context)
     else:
@@ -58,7 +56,6 @@ def product(request, pk):
         'title': title,
         'links_menu': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
-        # 'basket': request.user.basket.all() if request.user.is_authenticated else []
     }
     return render(request, 'mainapp/product.html', context)
 

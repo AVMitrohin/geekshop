@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from configparser import ConfigParser
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,7 +32,7 @@ SECRET_KEY = config.get('main', 'SECRET')
 DEBUG = config.getboolean('main', 'DEBUG')
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,10 +46,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'debug_toolbar',
+    'bootstrap3',
     'mainapp.apps.MainappConfig',
     'authapp.apps.AuthappConfig',
     'basketapp.apps.BasketappConfig',
     'adminapp.apps.AdminappConfig',
+    'ordersapp',
 ]
 
 MIDDLEWARE = [
@@ -80,6 +83,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+                # 'mainapp.context_processors.basket',
             ],
         },
     },
@@ -102,20 +108,20 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 
 # Internationalization
@@ -146,18 +152,31 @@ MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 AUTH_USER_MODEL = 'authapp.ShopUser'
 LOGIN_URL = '/auth/login'
 
-AUTHENTICATION_BACKENDS = [
+AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-]
+    'social_core.backends.google.GoogleOAuth2'
+)
+
+SOCIAL_AUTH_URL_NAMESPACES = 'social'
+
+# with open('geekshop/google+.json', 'r') as f:
+#     GOOGLE_PLUS = json.load(f)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config.get('OAUTH2', 'SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config.get('OAUTH2', 'SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_KEY')
 SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('OAUTH2', 'SOCIAL_AUTH_VK_OAUTH2_SECRET')
+
+SOCIAL_AUTH_VK_OAUTH2_IGNORE_DEFAULT_SCOPE = True
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = [
     'notify',
     'friends',
     'email',
 ]
+
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -165,6 +184,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_user',
     'social_core.pipeline.user.get_username',
     'social_core.pipeline.user.create_user',
+    'authapp.pipeline.save_user_profile',
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
@@ -174,3 +194,21 @@ SOCIAL_AUTH_PIPELINE = (
 
 
 LOGIN_REDIRECT_URL = '/'
+
+DOMAIN_NAME = 'http://127.0.0.1:8000'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'django@geekshop.local'
+EMAIL_HOST_PASSWORD = 'geekshop'
+EMAIL_USE_SSL = False
+
+# вариант python -m smtpd -n -c DebuggingServer localhost:25
+# EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
+
+# вариант логирования сообщений почты в виде файлов вместо отправки
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'tmp/email-messages/'
+
+LOGIN_ERROR_URL = '/'
+

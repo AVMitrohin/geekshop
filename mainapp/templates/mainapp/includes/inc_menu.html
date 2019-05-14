@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 {% load custom_tags %}
 <div class="header">
     <div class="logo">
@@ -15,6 +15,28 @@
             <li><a class="menu-link {% if request.resolver_match.view_name == 'contacts' %}
                         menu-link-active
                       {% endif %}" href="{% url 'contacts' %}">Контакты</a></li>
+            {% if user.is_authenticated %}
+                <li>
+                    <div class="dropdown">
+                        <a class="menu-link" href="" data-toggle="dropdown">
+                                {{ user.first_name|default:'Пользователь' }}
+                                <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'auth:edit' %}">
+                                    профиль
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'ordersapp:index' %}">
+                                    заказы
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
             <li>{% if request.user.is_superuser %}
                 <a class="menu-link" href="{% url 'admin_custom:categories' %}">Админка</a>
             {% endif %}</li>
