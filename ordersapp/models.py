@@ -32,23 +32,22 @@ class Order(models.Model):
         verbose_name = 'заказ'
         verbose_name_plural = 'заказы'
 
-    def __str__ (self):
-        return 'Текущий заказ: {}'.format(self.id)
+    def __str__(self):
+        return f'Текущий заказ: {self.pk}'
 
     def get_total_quantity(self):
-        items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity, items)))
+        items = self.orderitems.values_list('quantity', flat=True)
+        return sum(items)
 
     def get_product_type_quantity(self):
-        items = self.orderitems.select_related()
-        return len(items)
+        return self.orderitems.count()
 
     def get_total_cost(self):
-        items = self.orderitems.select_related()
-        return sum(list(map(lambda x: x.quantity * x.product.price, items)))
+        items = self.orderitems.select_related('product')
+        return sum([el.quantity * el.product.price for el in items])
 
     def delete(self):
-        for item in self.orderitems.select_related():
+        for item in self.orderitems.all():
             item.product.quantity += item.quantity
             item.product.save()
 
@@ -56,10 +55,38 @@ class Order(models.Model):
         self.save()
 
 
+# class OrderItemQuerySet(models.QuerySet):
+#
+#     def delete(self, *args, **kwargs):
+#         for object in self:
+#             object.product.quantity += object.quantity
+#             object.product.save()
+#         super().delete(*args, **kwargs)
+
+
 class OrderItem(models.Model):
+    # objects = OrderItemQuerySet.as_manager()
     order = models.ForeignKey(Order, related_name='orderitems', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, verbose_name='Продукт', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name='Количество', default=0)
 
     def get_product_cost(self):
-        self.product.price * self.quantity
+        return self.product.price * self.quantity
+
+    @staticmethod
+    def get_item(pk):
+        return OrderItem.objects.filter(pk=pk).first()
+
+    # def save(self, *args, **kwargs):
+    #     if self.pk:
+    #         self.product.quantity -= self.quantity - OrderItem.get_item(self.pk).quantity
+    #     else:
+    #         self.product.quantity -= self.quantity
+    #     self.product.save()
+    #     super().save(*args, **kwargs)
+    #
+    # def delete(self):
+    #     self.product.quantity += self.quantity
+    #     self.product.save()
+    #     super().delete()
+
